@@ -38,6 +38,7 @@ button{font:500 1rem var(--body);border-radius:10px;padding:12px 18px;border:1.5
 .vh{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
 .vh:focus-visible + .btns .btnlike{outline:3px solid var(--accent);outline-offset:2px}
 .btnlike{font:500 1rem var(--body);border-radius:10px;padding:12px 18px;text-align:center;cursor:pointer;border:1.5px solid var(--accent)}
+.btnlike.secondary{background:var(--surface);color:var(--fg);border-color:var(--line);flex:1}
 .btnlike.primary,button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-fg);flex:1}
 button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .result{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
@@ -54,7 +55,7 @@ a.go{display:inline-block;text-align:center;font:500 1rem var(--body);padding:12
 <div class="wrap">
   <header>
     <h1>QR Lezer</h1>
-    <p class="sub">Kies een foto of screenshot met een QR-code. Alles gebeurt op je eigen toestel, er wordt niets verstuurd.</p>
+    <p class="sub">Maak een foto van een QR-code, of kies een plaatje of screenshot. Alles gebeurt op je eigen toestel, er wordt niets verstuurd.</p>
   </header>
 
   <label class="drop" id="drop" for="file">
@@ -66,9 +67,11 @@ a.go{display:inline-block;text-align:center;font:500 1rem var(--body);padding:12
     <img id="preview" alt="Gekozen afbeelding" hidden>
   </label>
   <input type="file" id="file" accept="image/*" class="vh">
+  <input type="file" id="cam" accept="image/*" capture="environment" class="vh">
 
   <div class="btns">
-    <label class="primary btnlike" for="file">Afbeelding kiezen</label>
+    <label class="primary btnlike" for="cam">Foto maken</label>
+    <label class="btnlike secondary" for="file">Afbeelding kiezen</label>
     <button id="reset" hidden>Opnieuw</button>
   </div>
 
@@ -90,7 +93,7 @@ const $ = id => document.getElementById(id);
 const drop=$('drop'), file=$('file'), img=$('preview');
 
 function openPicker(){ file.click(); }
-file.addEventListener('change', () => { if(file.files[0]) handle(file.files[0]); file.value=''; });
+[file, $('cam')].forEach(inp => inp.addEventListener('change', () => { if(inp.files[0]) handle(inp.files[0]); inp.value=''; }));
 $('reset').onclick = () => { img.hidden=true; $('prompt').hidden=false; $('result').hidden=true; $('reset').hidden=true; };
 
 ['dragenter','dragover'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add('over');}));

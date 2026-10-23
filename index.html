@@ -50,6 +50,15 @@ a.go{display:inline-block;text-align:center;font:500 1rem var(--body);padding:12
 .note{color:var(--muted);font-size:.85rem;margin:0}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(24px + env(safe-area-inset-bottom,0px));
   background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:.92rem;max-width:calc(100% - 32px);text-align:center}
+/* Na het scannen: resultaat bovenaan, kleinere preview, alles in één scherm */
+.has-result .sub{display:none}
+.has-result h1{font-size:1.5rem}
+.has-result .wrap{gap:14px}
+.has-result #result{order:1}
+.has-result .drop{order:2;aspect-ratio:auto;height:26vh}
+.has-result .wrap > .btns{order:3}
+.has-result .corner{display:none}
+.has-result .text{max-height:7.5em;overflow:auto}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
@@ -97,7 +106,7 @@ const drop=$('drop'), file=$('file'), img=$('preview');
 
 function openPicker(){ file.click(); }
 [file, $('cam')].forEach(inp => inp.addEventListener('change', () => { if(inp.files[0]) handle(inp.files[0]); inp.value=''; }));
-$('reset').onclick = () => { img.hidden=true; $('prompt').hidden=false; $('result').hidden=true; $('reset').hidden=true; };
+$('reset').onclick = () => { img.hidden=true; $('prompt').hidden=false; $('result').hidden=true; $('reset').hidden=true; document.body.classList.remove('has-result'); };
 
 ['dragenter','dragover'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add('over');}));
 ['dragleave','drop'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.remove('over');}));
@@ -144,7 +153,7 @@ async function decode(im){
 }
 
 function show(text, msg){
-  $('result').hidden=false;
+  $('result').hidden=false; document.body.classList.add('has-result'); scrollTo(0,0);
   const err=$('err'), out=$('out'), open=$('open');
   open.hidden=true; $('note').hidden=true;
   if(!text){

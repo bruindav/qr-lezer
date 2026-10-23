@@ -180,6 +180,15 @@ window.addEventListener('popstate', () => {
   toastTimer = setTimeout(() => { t.hidden = true; }, 2500);
 });
 
+// Plaatje dat via 'Delen' (WhatsApp, mail, galerij) is binnengekomen
+if(new URLSearchParams(location.search).has('gedeeld') && 'caches' in window){
+  history.replaceState(null, '', location.pathname);
+  caches.open('qr-gedeeld').then(async c => {
+    const r = await c.match('gedeeld-plaatje');
+    if(r){ const b = await r.blob(); await c.delete('gedeeld-plaatje'); handle(b); }
+  }).catch(()=>{});
+}
+
 if('serviceWorker' in navigator){ window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{})); }
 
 $('copy').onclick = async () => {

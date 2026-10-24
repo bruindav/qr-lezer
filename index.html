@@ -17,7 +17,9 @@
 :root[data-theme="dark"]{
   --bg:#111513; --surface:#1a201d; --fg:#e8ede9; --muted:#9aa69f; --line:#2e3833;
   --accent:#4cc28a; --accent-fg:#0d1a13; --warn:#f08a62; color-scheme:dark}
-body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--body);
+[hidden]{display:none!important}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--body);
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 40px}
 .wrap{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
 h1{font:800 clamp(2rem,7vw,2.6rem)/1 var(--display);margin:0;letter-spacing:-.02em;text-wrap:balance}

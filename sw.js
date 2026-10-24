@@ -1,7 +1,8 @@
 // Eenvoudige service worker: maakt de app installeerbaar (zonder adresbalk) en werkt ook offline.
-const CACHE = 'qr-lezer-v3';
+const CACHE = 'qr-lezer-v4';
 const SHARE_CACHE = 'qr-gedeeld';
 const FILES = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png',
+  './help.html', './privacy.html', './disclaimer.html', './info.css', './icons/logo-mark.png',
   'https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));

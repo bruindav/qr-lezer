@@ -59,6 +59,13 @@ a.go{display:inline-block;text-align:center;font:500 1rem var(--body);padding:12
 .has-result .wrap > .btns{order:3}
 .has-result .corner{display:none}
 .has-result .text{max-height:7.5em;overflow:auto}
+.foot{order:9;border-top:1px solid var(--line);padding-top:16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.foot .links{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.92rem}
+.foot .links a{color:var(--muted);text-decoration:none}
+.foot .dd{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--muted);font-size:.88rem}
+.foot .dd img{width:28px;height:28px}
+.foot .dd b{font-weight:500;color:var(--fg)}
+.foot a:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
@@ -96,6 +103,15 @@ a.go{display:inline-block;text-align:center;font:500 1rem var(--body);padding:12
     </div>
     <p class="note" id="note" hidden>Controleer het adres voordat je de link opent.</p>
   </section>
+
+  <footer class="foot">
+    <nav class="links" aria-label="Informatie">
+      <a href="help.html">Help</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </nav>
+    <a class="dd" href="https://bruindav.github.io/DigidaveStore/"><img src="icons/logo-mark.png" alt="" width="28" height="28"><span>Meer apps van <b>digidave</b></span></a>
+  </footer>
 </div>
 <div class="toast" id="toast" hidden>Druk nog een keer op terug om te sluiten</div>
 

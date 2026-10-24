@@ -1,5 +1,5 @@
 // Eenvoudige service worker: maakt de app installeerbaar (zonder adresbalk) en werkt ook offline.
-const CACHE = 'qr-lezer-v4';
+const CACHE = 'qr-lezer-v5';
 const SHARE_CACHE = 'qr-gedeeld';
 const FILES = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png',
   './help.html', './privacy.html', './disclaimer.html', './info.css', './icons/logo-mark.png',
